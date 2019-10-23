@@ -20,6 +20,20 @@ This branch is for patches to the latest 2.0.x release version. Periodically thi
 
 Download earlier versions of Marlin on the [Releases page](https://github.com/MarlinFirmware/Marlin/releases).
 
+This fork of Marlin is configured for SKR E3 Mini v 1.2
+
+Features Enabled:
+
+    BLTouch
+    S-Curve Acceleration
+    Linear Advance
+    Sensorless Homing
+    Stealthchop
+    StallGuard
+    Hybrid Threshold
+    SD Card Support
+    TMC_DEBUG w/ MONITOR_DRIVER_STATUS & M122 (temporary)
+
 ## Building Marlin 2.0
 
 To build Marlin 2.0 you'll need [Arduino IDE 1.8.8 or newer](https://www.arduino.cc/en/main/software) or [PlatformIO](http://docs.platformio.org/en/latest/ide.html#platformio-ide). We've posted detailed instructions on [Building Marlin with Arduino](http://marlinfw.org/docs/basics/install_arduino.html) and [Building Marlin with PlatformIO for ReArm](http://marlinfw.org/docs/basics/install_rearm.html) (which applies well to other 32-bit boards).
