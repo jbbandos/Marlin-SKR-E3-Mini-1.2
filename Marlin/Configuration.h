@@ -85,20 +85,6 @@
  * respectfully request that you retain the unmodified Marlin boot screen.
  */
 
-/**
- * **** DEVELOPMENT ONLY ****
- * 
- * THIS REMOVES THE 256KB-28KB ROM LIMITATION
- * **** USE AT YOUR OWN RISK ***
- * 
- * The MCU_STM32F103RE is a chip available on a select few versions of the
- * SKR E3 Mini. It features 512KB of space
- * 
- * This allows you to flash a ROM greater than 28KB (233,472B) but saving to EEPROM
- * probably will not work. May brick your device if you try to flash a ROM larger
- * than you have space for
- */
-//#define MCU_STM32F103RE true
 
 // Show the Marlin bootscreen on startup. ** ENABLE FOR PRODUCTION **
 #define SHOW_BOOTSCREEN
