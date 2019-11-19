@@ -20,7 +20,7 @@ This branch is for patches to the latest 2.0.x release version. Periodically thi
 
 Download earlier versions of Marlin on the [Releases page](https://github.com/MarlinFirmware/Marlin/releases).
 
-This fork of Marlin is configured for SKR E3 Mini v 1.2
+This fork of Marlin is configured for SKR E3 Mini v 1.2, based on morningreis branch (https://github.com/morningreis/Marlin-SKR-E3-Mini-1.2)
 
 Features Enabled:
 
@@ -32,7 +32,6 @@ Features Enabled:
     StallGuard
     Hybrid Threshold
     SD Card Support
-    TMC_DEBUG w/ MONITOR_DRIVER_STATUS & M122 (temporary)
 
 ## Building Marlin 2.0
 
