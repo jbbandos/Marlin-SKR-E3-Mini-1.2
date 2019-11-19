@@ -408,6 +408,8 @@
   #error "Z_STEPPER_ALIGN_X and Z_STEPPER_ALIGN_Y are now combined as Z_STEPPER_ALIGN_XY. Please update your Configuration_adv.h."
 #elif defined(JUNCTION_DEVIATION)
   #error "JUNCTION_DEVIATION is no longer required. (See CLASSIC_JERK). Please remove it from Configuration.h."
+#elif defined(BABYSTEP_MULTIPLICATOR)
+  #error "BABYSTEP_MULTIPLICATOR is now BABYSTEP_MULTIPLICATOR_[XY|Z]. Please update Configuration_adv.h."
 #endif
 
 #define BOARD_MKS_13        -1000
@@ -596,8 +598,10 @@ static_assert(Y_MAX_LENGTH >= Y_BED_SIZE, "Movement bounds (Y_MIN_POS, Y_MAX_POS
 /**
  * Custom Boot and Status screens
  */
-#if EITHER(SHOW_CUSTOM_BOOTSCREEN, CUSTOM_STATUS_SCREEN_IMAGE) && !HAS_GRAPHICAL_LCD
-  #error "Graphical LCD is required for SHOW_CUSTOM_BOOTSCREEN and CUSTOM_STATUS_SCREEN_IMAGE."
+#if ENABLED(SHOW_CUSTOM_BOOTSCREEN) && !HAS_GRAPHICAL_LCD && !ENABLED(LULZBOT_TOUCH_UI)
+  #error "SHOW_CUSTOM_BOOTSCREEN requires Graphical LCD or LULZBOT_TOUCH_UI."
+#elif ENABLED(CUSTOM_STATUS_SCREEN_IMAGE) && !HAS_GRAPHICAL_LCD
+  #error "CUSTOM_STATUS_SCREEN_IMAGE requires a Graphical LCD."
 #endif
 
 /**
@@ -741,10 +745,6 @@ static_assert(Y_MAX_LENGTH >= Y_BED_SIZE, "Movement bounds (Y_MIN_POS, Y_MAX_POS
 
   #if EXTRUDERS > 6
     #error "Marlin supports a maximum of 6 EXTRUDERS."
-  #endif
-
-  #if ENABLED(TEMP_SENSOR_1_AS_REDUNDANT)
-    #error "EXTRUDERS must be 1 with TEMP_SENSOR_1_AS_REDUNDANT."
   #endif
 
   #if ENABLED(HEATERS_PARALLEL)
@@ -1501,6 +1501,8 @@ static_assert(Y_MAX_LENGTH >= Y_BED_SIZE, "Movement bounds (Y_MIN_POS, Y_MAX_POS
     #error "TEMP_SENSOR_1 is required with 2 or more HOTENDS."
   #elif !ANY_PIN(TEMP_1, MAX6675_SS2)
     #error "TEMP_1_PIN not defined for this board."
+  #elif ENABLED(TEMP_SENSOR_1_AS_REDUNDANT)
+    #error "HOTENDS must be 1 with TEMP_SENSOR_1_AS_REDUNDANT."
   #endif
   #if HOTENDS > 2
     #if TEMP_SENSOR_2 == 0
@@ -2542,5 +2544,13 @@ static_assert(   _ARR_TEST(3,0) && _ARR_TEST(3,1) && _ARR_TEST(3,2)
     #error "PRINT_PROGRESS_SHOW_DECIMALS currently requires a Graphical LCD."
   #elif ENABLED(SHOW_REMAINING_TIME)
     #error "SHOW_REMAINING_TIME currently requires a Graphical LCD."
+  #endif
+#endif
+
+#if ENABLED(LIN_ADVANCE) && MINIMUM_STEPPER_PULSE < 1
+  #if HAS_TMC_STANDALONE_E_DRIVER
+    #error "LIN_ADVANCE with TMC standalone driver on extruder requires MIMIMUM_STEPPER_PULSE >= 1"
+  #elif HAS_TMC_E_DRIVER && DISABLED(SQUARE_WAVE_STEPPING)
+    #error "LIN_ADVANCE with TMC driver on extruder requires SQUARE_WAVE_STEPPING or MINIMUM_STEPPER_PULSE >= 1"
   #endif
 #endif
