@@ -925,7 +925,10 @@
  *
  * Specify a Probe position as { X, Y, Z }
  */
-#define NOZZLE_TO_PROBE_OFFSET { -42, -16, -1.075 }
+//Hero Me fixed bltouch offset
+//#define NOZZLE_TO_PROBE_OFFSET { -42, -16, -4.300 }
+//Standard headsink adjustable bltouch offset
+#define NOZZLE_TO_PROBE_OFFSET { -44, -14, -1.075 }
 
 // Certain types of probes need to stay away from edges
 #define MIN_PROBE_EDGE 20
