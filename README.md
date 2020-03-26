@@ -1,5 +1,5 @@
-# This fork is no longer maintained. you can get a much better put together, easier to compile repository
-# in Kay3D's Cheetah project - https://github.com/KAY3D/Marlin
+# This fork is no longer maintained. you can get a much better put together, easier to compile repository in Kay3D's Cheetah project - https://github.com/KAY3D/Marlin
+
 
 
 # Marlin 3D Printer Firmware
